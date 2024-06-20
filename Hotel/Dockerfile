@@ -1,8 +1,9 @@
 FROM maven:3.9.6-eclipse-temurin-22-jammy AS build
-WORKDIR /usr/src/app
+WORKDIR /app
 COPY . .
 RUN mvn clean package -DskipTests
+
 FROM eclipse-temurin:22-jdk-jammy
-COPY --from=build /usr/src/app/target/hotel-0.0.1-SNAPSHOT.jar hotel.jar
+COPY --from=build /app/target/hotel-0.0.1-SNAPSHOT.jar hotel.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "hotel.jar"]
