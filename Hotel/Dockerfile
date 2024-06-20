@@ -5,6 +5,6 @@ RUN mvn clean package -DskipTests
 
 
 FROM eclipse-temurin:22-jdk-jammy
-COPY --from=build /usr/src/app/target/Hotel-0.0.1-SNAPSHOT.jar hotel.jar
+COPY --from=build /target/Hotel-3.3.0-SNAPSHOT.jar Hotel.jar
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "hotel.jar"]
+ENTRYPOINT ["java", "-jar", "Hotel.jar"]
